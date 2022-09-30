@@ -10,19 +10,34 @@ def romanToInt(s: str) -> int:
     for i in range(len(s)):
         if i < len(s) - 1:
             if s[i] == 'I':
-                # Case 1 and 2
+                """
+                Special cases:
+                4 -> IIII -> IV
+                9 -> VIIII -> IX
+                """
+                
                 if s[i+1] == 'V' or s[i+1] == 'X':
                     num -= 1
                 else:
                     num += hashMap[s[i]]
             elif s[i] == 'X':
-                # Case 3 and 4
+                """
+                Special cases:
+                40 -> XXXX -> XL
+                90 -> LXXXX -> XC
+                """
+                
                 if s[i+1] == 'L' or s[i+1] == 'C':
                     num -= 10
                 else:
                     num += hashMap[s[i]]
             elif s[i] == 'C':
-                # Case 5 and 6
+                """
+                Special cases:
+                400 -> CCCC -> CD
+                900 -> DCCCC -> CM
+                """
+                
                 if s[i+1] == 'D' or s[i+1] == 'M':
                     num -= 100
                 else:
@@ -31,6 +46,8 @@ def romanToInt(s: str) -> int:
                 num += hashMap[s[i]]
         else:
             num += hashMap[s[i]]
+    
+    assert num >= 1 and num <= 3999
     
     return num
 
