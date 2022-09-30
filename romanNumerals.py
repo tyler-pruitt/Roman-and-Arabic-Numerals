@@ -1,4 +1,8 @@
 def romanToInt(s: str) -> int:
+    """
+    Converts Roman numerals into integers in arabic numerals
+    """
+    
     hashMap = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
     
     num = 0
@@ -33,15 +37,10 @@ def romanToInt(s: str) -> int:
 def intToRoman(num: int) -> str:
     """
     Converts integers in arabic numerals into Roman numerals
-    
-    Special cases:
-    4 -> IIII -> IV
-    9 -> VIIII -> IX
-    40 -> XXXX -> XL
-    90 -> LXXXX -> XC
-    400 -> CCCC -> CD
-    900 -> DCCCC -> CM
     """
+    
+    assert num >= 1 and num <= 3999
+    
     hashMap = {1: "I", 5: "V", 10: "X", 50: "L", 100: "C", 500: "D", 1000: "M"}
     order = [1000, 500, 100, 50, 10, 5, 1]
     
@@ -57,7 +56,15 @@ def intToRoman(num: int) -> str:
         # (num // order[i]) = the number of letters to add for this time
         
         if (num // order[i]) == 4:
-            # Special cases
+            """
+            Special cases:
+            4 -> IIII -> IV
+            9 -> VIIII -> IX
+            40 -> XXXX -> XL
+            90 -> LXXXX -> XC
+            400 -> CCCC -> CD
+            900 -> DCCCC -> CM
+            """
             
             if hashMap[order[i]] == "I":
                 # "I" before "V" or "X" cases
